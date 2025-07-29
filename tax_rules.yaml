@@ -1,0 +1,50 @@
+fy_24_25:
+  old_regime_slabs:
+    below_60:
+      - { upto: 250000, rate: 0 }
+      - { upto: 500000, rate: 0.05 }
+      - { upto: 1000000, rate: 0.20 }
+      - { above: 1000000, rate: 0.30 }
+    between_60_80:
+      - { upto: 300000, rate: 0 }
+      - { upto: 500000, rate: 0.05 }
+      - { upto: 1000000, rate: 0.20 }
+      - { above: 1000000, rate: 0.30 }
+    above_80:
+      - { upto: 500000, rate: 0 }
+      - { upto: 1000000, rate: 0.20 }
+      - { above: 1000000, rate: 0.30 }
+      
+  new_regime_slabs:
+    - { upto: 300000, rate: 0 }
+    - { upto: 600000, rate: 0.05 }
+    - { upto: 900000, rate: 0.10 }
+    - { upto: 1200000, rate: 0.15 }
+    - { upto: 1500000, rate: 0.20 }
+    - { above: 1500000, rate: 0.30 }
+    
+  deductions:
+    standard_deduction: 50000
+    house_property_standard_deduction_rate: 0.30
+    section_80c: { limit: 150000 }
+    section_80d:
+      limit_self_below_60: 25000
+      limit_self_above_60: 50000
+      limit_parents_below_60: 25000
+      limit_parents_above_60: 50000
+    section_80e: { limit: -1 } # No limit
+    section_80g: { limit: -1 } # No limit
+    section_24b: { limit: 200000 }
+    section_80tta: { limit: 10000 }
+    section_80u:
+      disability: 75000
+      severe_disability: 125000
+    section_80dd:
+      disability: 75000
+      severe_disability: 125000
+    section_80ccd_1b: { limit: 50000 }
+    hra:
+      metro_rate: 0.50
+      non_metro_rate: 0.40
+      
+  cess_rate: 0.04

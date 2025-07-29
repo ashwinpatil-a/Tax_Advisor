@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Tax Advisor</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+</head>
+<body>
+
+    <header>
+        <div class="header-container">
+            <h1><i class="fa-solid fa-calculator"></i> AI Tax Advisor</h1>
+            <nav>
+                <a href="index.html" class="nav-link active">Home</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="help.html" class="nav-link">Help</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section id="welcome-screen">
+            <h2>Simplify Your Tax Planning for FY 2024-25</h2>
+            <p class="welcome-text">Get a personalized analysis of your taxes. Enter your email to begin or to load a previously saved profile.</p>
+            <div class="form-group">
+                <label for="user-email-login">Your Email Address</label>
+                <input type="email" id="user-email-login" class="form-control" placeholder="your.email@example.com">
+            </div>
+            <div class="welcome-nav">
+                <button type="button" class="btn" id="continue-btn">Continue &rarr;</button>
+            </div>
+            <p class="disclaimer">We do not store personal documents. All calculations are based on the data you provide.</p>
+        </section>
+
+        <section id="tax-wizard" style="display:none;">
+            <div id="wizard-progress-bar" class="progress-bar">
+                <div class="progress-bar-step active" data-step="1"><span>1</span> Profile</div>
+                <div class="progress-bar-step" data-step="2"><span>2</span> Income</div>
+                <div class="progress-bar-step" data-step="3"><span>3</span> Savings</div>
+                <div class="progress-bar-step" data-step="4"><span>4</span> Results</div>
+            </div>
+
+            <form id="tax-form">
+                <div class="wizard-step active" id="step-1">
+                    <fieldset>
+                        <legend><i class="fa-solid fa-user"></i> Your Profile</legend>
+                        <p>Tell us about yourself to determine the correct tax rules.</p>
+                        <div class="form-grid-2">
+                            <div class="form-group">
+                                <label for="age-group">What is your age group?</label>
+                                <select id="age-group" class="form-control">
+                                    <option value="below_60" selected>Below 60 years</option>
+                                    <option value="between_60_80">60 to 80 years</option>
+                                    <option value="above_80">Above 80 years</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="resident-status">What is your residential status?</label>
+                                <select id="resident-status" class="form-control">
+                                    <option value="resident" selected>Resident Indian</option>
+                                    <option value="non_resident">Non-Resident Indian (NRI)</option>
+                                </select>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <div class="wizard-nav">
+                        <button type="button" class="btn next-btn">Next &rarr;</button>
+                    </div>
+                </div>
+
+                <div class="wizard-step" id="step-2">
+                     <fieldset>
+                        <legend><i class="fa-solid fa-sack-dollar"></i> Your Income</legend>
+                        <p>Enter your annual income from all sources. Leave fields as 0 if they don't apply.</p>
+                         <div class="form-group">
+                             <label for="salary-total">Total Annual Salary (before any deductions)</label>
+                             <input type="number" id="salary-total" class="form-control" value="0">
+                         </div>
+                         <div class="form-grid-2">
+                             <div class="form-group">
+                                 <label for="salary-basic">Basic Salary portion of your total salary</label>
+                                 <input type="number" id="salary-basic" class="form-control" value="0">
+                             </div>
+                             <div class="form-group">
+                                 <label for="salary-hra">House Rent Allowance (HRA) received</label>
+                                 <input type="number" id="salary-hra" class="form-control" value="0">
+                             </div>
+                         </div>
+                         <hr>
+                         <div class="form-grid-2">
+                            <div class="form-group">
+                                <label for="hp-rent-received">Rent received from any property you own</label>
+                                <input type="number" id="hp-rent-received" class="form-control" value="0">
+                            </div>
+                            <div class="form-group">
+                                <label for="hp-municipal-taxes">Municipal taxes paid for that property</label>
+                                <input type="number" id="hp-municipal-taxes" class="form-control" value="0">
+                            </div>
+                        </div>
+                         <hr>
+                         <div class="form-group">
+                            <label for="other-sources-interest-savings">Interest from Savings Accounts</label>
+                            <input type="number" id="other-sources-interest-savings" class="form-control" value="0">
+                        </div>
+                         <div class="form-grid-3">
+                            <div class="form-group">
+                                <label for="capital-gains">Profits from selling shares/property</label>
+                                <input type="number" id="capital-gains" class="form-control" value="0">
+                            </div>
+                            <div class="form-group">
+                                <label for="business-profession">Income from business or profession</label>
+                                <input type="number" id="business-profession" class="form-control" value="0">
+                            </div>
+                             <div class="form-group">
+                                 <label for="other-sources">Other income (dividends, FD interest, etc.)</label>
+                                 <input type="number" id="other-sources" class="form-control" value="0">
+                             </div>
+                         </div>
+                    </fieldset>
+                    <div class="wizard-nav">
+                        <button type="button" class="btn-secondary prev-btn">&larr; Back</button>
+                        <button type="button" class="btn next-btn">Next &rarr;</button>
+                    </div>
+                </div>
+
+                <div class="wizard-step" id="step-3">
+                    <fieldset>
+                        <legend><i class="fa-solid fa-piggy-bank"></i> Your Savings & Expenses</legend>
+                        <p>Enter your tax-saving investments and expenses.</p>
+                         <div class="form-grid-2">
+                             <div class="form-group">
+                                 <label for="rent-paid">Total annual rent you pay</label>
+                                 <input type="number" id="rent-paid" class="form-control" value="0">
+                             </div>
+                             <div class="form-group">
+                                 <label>Do you live in a metro city?</label>
+                                 <div class="radio-group">
+                                     <label><input type="radio" name="is_metro" value="true"> Yes</label>
+                                     <label><input type="radio" name="is_metro" value="false" checked> No</label>
+                                 </div>
+                             </div>
+                         </div>
+                        <hr>
+                        <div class="form-grid-2">
+                            <div class="form-group">
+                                <label for="section-80c">Investments (PPF, EPF, Insurance, etc.)</label>
+                                <input type="number" id="section-80c" class="form-control" value="0">
+                            </div>
+                            <div class="form-group">
+                                <label for="section-80ccd-1b">Pension Plan Investment (NPS)</label>
+                                <input type="number" id="section-80ccd-1b" class="form-control" value="0">
+                            </div>
+                        </div>
+                        <hr>
+                         <div class="form-grid-2">
+                             <div class="form-group">
+                                 <label for="section-80d-self">Your Health Insurance Premium</label>
+                                 <input type="number" id="section-80d-self" class="form-control" value="0">
+                                 <label class="checkbox-label"><input type="checkbox" id="self-above-60"> Tick if you are above 60</label>
+                             </div>
+                             <div class="form-group">
+                                 <label for="section-80d-parents">Parents' Health Insurance Premium</label>
+                                 <input type="number" id="section-80d-parents" class="form-control" value="0">
+                                 <label class="checkbox-label"><input type="checkbox" id="parents-above-60"> Tick if parents are above 60</label>
+                             </div>
+                         </div>
+                        <hr>
+                        <div class="form-grid-2">
+                            <div class="form-group">
+                                <label for="section-24b">Interest paid on Home Loan</label>
+                                <input type="number" id="section-24b" class="form-control" value="0">
+                            </div>
+                             <div class="form-group">
+                                <label for="section-80e">Interest paid on Education Loan</label>
+                                <input type="number" id="section-80e" class="form-control" value="0">
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                            <label>Deduction for Disability (if applicable)</label>
+                            <div class="form-grid-2">
+                                <select id="section-80u" class="form-control">
+                                    <option value="none" selected>For Self</option>
+                                    <option value="disability">Disability</option>
+                                    <option value="severe_disability">Severe Disability</option>
+                                </select>
+                                <select id="section-80dd" class="form-control">
+                                    <option value="none" selected>For a Dependent</option>
+                                    <option value="disability">Disability</option>
+                                    <option value="severe_disability">Severe Disability</option>
+                                </select>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <div class="form-group" style="margin-top: 2rem;">
+                        <label for="user-email-final">Confirm your email to save & analyze</label>
+                        <input type="email" id="user-email-final" class="form-control" required>
+                    </div>
+                    <div class="wizard-nav">
+                        <button type="button" class="btn-secondary prev-btn">&larr; Back</button>
+                        <button type="submit" class="btn" id="calculate-btn">Analyze My Taxes</button>
+                    </div>
+                </div>
+
+                <div class="wizard-step" id="step-4">
+                    <div id="results-container">
+                        <div class="loader"></div>
+                    </div>
+                </div>
+            </form>
+        </section>
+    </main>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
